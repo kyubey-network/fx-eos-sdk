@@ -75,11 +75,10 @@ namespace Andoromeda.Framework.EosNode
         {
             symbol = symbol.ToUpper();
 
-            using (var response = await _client.PostAsync("/v1/chain/get_table_rows", new StringContent(JsonConvert.SerializeObject(new
+            using (var response = await _client.PostAsync("/v1/chain/get_currency_balance", new StringContent(JsonConvert.SerializeObject(new
             {
                 code = code,
                 symbol = symbol,
-                json = true,
                 account = account
             }), Encoding.UTF8, "application/json"), cancellationToken))
             {

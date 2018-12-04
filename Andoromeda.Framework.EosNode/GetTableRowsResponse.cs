@@ -4,7 +4,7 @@ namespace Andoromeda.Framework.EosNode
 {
     public class GetTableRowsResponse<T>
     {
-        public IEnumerable<T> data { get; set; }
+        public IEnumerable<T> rows { get; set; }
         public bool more { get; set; }
     }
 

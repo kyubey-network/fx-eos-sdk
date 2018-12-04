@@ -52,7 +52,7 @@ namespace Andoromeda.Framework.EosNode
 
         public ulong recv_sequence { get; set; }
 
-        public IEnumerable<string> auth_sequence { get; set; }
+        public IEnumerable<IEnumerable<object>> auth_sequence { get; set; }
 
         public ulong code_sequence { get; set; }
 
@@ -67,7 +67,18 @@ namespace Andoromeda.Framework.EosNode
 
         public IEnumerable<GetActionsResponseActionTraceActAuthorization> authorization { get; set; }
 
-        public string data { get; set; }
+        public GetActionsResponseActionTraceActData data { get; set; }
+    }
+
+    public class GetActionsResponseActionTraceActData
+    {
+        public string from { get; set; }
+
+        public string to { get; set; }
+
+        public string quantity { get; set; }
+
+        public string memo { get; set; }
     }
 
     public class GetActionsResponseActionTraceActAuthorization
