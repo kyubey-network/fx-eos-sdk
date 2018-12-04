@@ -18,6 +18,7 @@ namespace Andoromeda.Framework.EosNode
         public NodeApiInvoker(INodeProvider nodeProvider)
         {
             this._nodeProvider = nodeProvider;
+            this._client = new HttpClient { BaseAddress = new Uri(_nodeProvider.GetNodes().First()) };
         }
 
         public void Dispose()
