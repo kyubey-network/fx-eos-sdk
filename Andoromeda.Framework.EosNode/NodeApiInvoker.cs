@@ -32,7 +32,7 @@ namespace Andoromeda.Framework.EosNode
             {
                 account_name = account,
                 pos = skip,
-                offset = take
+                offset = take - 1
             }), Encoding.UTF8, "application/json"), cancellationToken))
             {
                 var responseText = await response.Content.ReadAsStringAsync();
@@ -63,7 +63,7 @@ namespace Andoromeda.Framework.EosNode
                 scope = scope,
                 json = true,
                 pos = skip,
-                offset = take
+                offset = take - 1
             }), Encoding.UTF8, "application/json"), cancellationToken))
             {
                 var responseText = await response.Content.ReadAsStringAsync();
