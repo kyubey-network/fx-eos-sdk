@@ -67,18 +67,7 @@ namespace Andoromeda.Framework.EosNode
 
         public IEnumerable<GetActionsResponseActionTraceActAuthorization> authorization { get; set; }
 
-        public GetActionsResponseActionTraceActData data { get; set; }
-    }
-
-    public class GetActionsResponseActionTraceActData
-    {
-        public string from { get; set; }
-
-        public string to { get; set; }
-
-        public string quantity { get; set; }
-
-        public string memo { get; set; }
+        public dynamic data { get; set; }
     }
 
     public class GetActionsResponseActionTraceActAuthorization
