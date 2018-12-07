@@ -112,7 +112,7 @@ namespace Andoromeda.Framework.EosNode
                 var responseText = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<IEnumerable<string>>(responseText);
                 var ret = new List<GetCurrencyBalanceResponseRow>(result.Count());
-                foreach(var x in result)
+                foreach (var x in result)
                 {
                     var splited = x.Split(' ');
                     ret.Add(new GetCurrencyBalanceResponseRow
@@ -126,6 +126,18 @@ namespace Andoromeda.Framework.EosNode
                 {
                     balances = ret
                 };
+            }
+        }
+
+        public async Task<GetAccountResponse> GetAccountAsync(string account, CancellationToken cancellationToken = default)
+        {
+            using (var response = await _client.PostAsync("/v1/chain/get_account", new StringContent(JsonConvert.SerializeObject(new
+            {
+                account_name = account
+            }), Encoding.UTF8, "application/json"), cancellationToken))
+            {
+                var responseText = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<GetAccountResponse>(responseText);
             }
         }
     }
