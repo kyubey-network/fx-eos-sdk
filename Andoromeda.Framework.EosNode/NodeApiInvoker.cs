@@ -140,5 +140,19 @@ namespace Andoromeda.Framework.EosNode
                 return JsonConvert.DeserializeObject<GetAccountResponse>(responseText);
             }
         }
+
+        public async Task<GetAbiJsonToBinResponse> GetAbiJsonToBinAsync(string code, string action, object data, CancellationToken cancellationToken = default)
+        {
+            using (var response = await _client.PostAsync("/v1/chain/abi_json_to_bin", new StringContent(JsonConvert.SerializeObject(new
+            {
+                code = code,
+                action = action,
+                args = data
+            }), Encoding.UTF8, "application/json"), cancellationToken))
+            {
+                var responseText = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<GetAbiJsonToBinResponse>(responseText);
+            }
+        }
     }
 }
