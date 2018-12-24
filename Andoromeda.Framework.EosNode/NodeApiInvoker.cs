@@ -154,5 +154,21 @@ namespace Andoromeda.Framework.EosNode
                 return JsonConvert.DeserializeObject<GetAbiJsonToBinResponse>(responseText);
             }
         }
+
+        public async Task<GetSymbolSupplyResponse> GetSymbolSupplyAsync(string issuer, string symbol, CancellationToken cancellationToken = default)
+        {
+            using (var response = await _client.PostAsync("/v1/chain/get_table_rows", new StringContent(JsonConvert.SerializeObject(new
+            {
+                code = issuer,
+                scope = symbol,
+                table = "stat",
+                json = true
+            }), Encoding.UTF8, "application/json"), cancellationToken))
+            {
+                var responseText = await response.Content.ReadAsStringAsync();
+                var responseObj = JsonConvert.DeserializeObject<GetTableRowsResponse<GetSymbolSupplyResponse>>(responseText);
+                return responseObj.rows.FirstOrDefault();
+            }
+        }
     }
 }
