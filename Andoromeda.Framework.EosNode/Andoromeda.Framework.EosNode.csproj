@@ -3,6 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
+    <Authors>yuko,qinxiaowen</Authors>
+    <Version>0.3.0</Version>
+    <Company>Andoromeda</Company>
+    <Description>C # implement EOS API Client</Description>
   </PropertyGroup>
 
   <ItemGroup>
