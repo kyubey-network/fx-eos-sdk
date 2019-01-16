@@ -4,10 +4,14 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class NodeApiInvokerExtensions
     {
-        public static IServiceCollection AddEosNodeApiInvoker(this IServiceCollection self)
+        public static IServiceCollection AddEosNodeApiInvoker(this IServiceCollection self, string nodeAddress = null)
         {
-            return self.AddSingleton<INodeProvider, DefaultNodeProvider>()
-                .AddSingleton<NodeApiInvoker>();
+            if (string.IsNullOrWhiteSpace(nodeAddress))
+            {
+                return self.AddSingleton<INodeProvider, DefaultNodeProvider>()
+                           .AddSingleton<NodeApiInvoker>();
+            }
+            return self.AddSingleton<NodeApiInvoker>(x => new NodeApiInvoker(nodeAddress));
         }
     }
 }
